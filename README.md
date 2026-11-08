@@ -30,38 +30,14 @@ fases da CRISP-DM com atividades de análise de redes.
 https://doi.org/10.3390/make7030101
 
 ## Estrutura do repositório
-grafos-desinformacao/
-├── README.md                 # visão geral, como rodar, papéis do grupo
-├── requirements.txt          # dependências Python
-├── .gitignore
-│
-├── dados/
-│   ├── brutos/               # Twitter15/16 original, sem nenhuma alteração
-│   └── processados/          # tabelas limpas
-│
-├── notebooks/                # exploração e análise, em ordem
-│   ├── 01_exploracao.ipynb
-│   ├── 02_metricas.ipynb
-│   └── 03_comparacao_robustez.ipynb
-│
-├── src/                      # código reutilizável (o "núcleo")
-│   ├── carregamento.py       # lê os arquivos do dataset
-│   ├── cascata.py            # monta a árvore (grafo) de cada cascata
-│   ├── metricas.py           # tamanho, profundidade, largura, viralidade, velocidade
-│   ├── robustez.py           # simulação de remoção de contas centrais
-│   └── visualizacao.py       # desenho dos grafos e gráficos
-│
-├── testes/
-│   └── test_metricas.py      # testa as métricas nas cascatas X (estrela) e Y (cadeia)
-│
-├── resultados/
-│   ├── figuras/              # imagens para o relatório e os slides
-│   └── tabelas/              # métricas calculadas, resultados dos testes estatísticos
-│
-└── docs/
-    ├── relatorio/            
-    ├── slides/
-    └── diagramas/            
+| Pasta | Conteúdo |
+|---|---|
+| `dados/` | Dataset bruto (não alterado) e processado |
+| `notebooks/` | Exploração e análises, numeradas na ordem de execução |
+| `src/` | Núcleo do protótipo: carregamento, cascatas, métricas, robustez, visualização |
+| `testes/` | Testes das métricas em cascatas com resultado conhecido |
+| `resultados/` | Figuras e tabelas geradas |
+| `docs/` | Relatório, slides e diagramas |        
 
 ## Como rodar
 Requisitos: Python 3.11.
