@@ -1,0 +1,16 @@
+# Ambiente virtual
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Atributos de ML do UPFD (grandes e não usados na análise estrutural)
+dados/brutos/**/new_*_feature.npz
