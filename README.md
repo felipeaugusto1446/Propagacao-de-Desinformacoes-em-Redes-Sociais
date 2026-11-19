@@ -4,14 +4,14 @@ Projeto da disciplina **SMAC03 – Grafos** (UNIFEI, 2º semestre de 2026),
 Cenário 2. Prof. Rafael Frinhani.
 
 ## Objetivo
-Investigar como a **estrutura das cascatas de compartilhamento** difere entre
+Investigar como a estrutura das cascatas de compartilhamento difere entre
 boatos falsos e verdadeiros no Twitter, e o que essa estrutura revela sobre
 onde intervenções de moderação teriam maior efeito.
 
 ## Modelagem
 Cada cascata é uma **árvore direcionada com raiz**:
-- **Raiz:** o tweet original
-- **Vértice:** um compartilhamento (ID do usuário + ID do tweet)
+- **Raiz:** o usuário que publicou o tweet original
+- **Vértice:** os usuários que participaram da cascata
 - **Aresta:** de quem passou o conteúdo para quem compartilhou
 
 Métricas analisadas: tamanho, profundidade, largura máxima, viralidade
