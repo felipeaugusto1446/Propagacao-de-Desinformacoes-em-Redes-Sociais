@@ -19,15 +19,8 @@ estrutural, velocidade e centralidade das contas, além da simulação de
 remoção das contas centrais (robustez).
 
 ## Dataset
-**Twitter15/16** — árvores de propagação de tweets rotulados
-(`false`, `true`, `unverified`, `non-rumor`).
+**Twitter15/16** — árvores de propagação de tweets rotulados (`false`, `true`, `unverified`, `non-rumor`).
 Fonte: Ma, Gao & Wong (2017). https://doi.org/10.18653/v1/P17-1066
-Instruções de download em `dados/brutos/` (ver seção "Como rodar").
-
-## Metodologia
-O projeto segue a **CRISP-NET** (Acuña-Cid et al., 2025), que integra as
-fases da CRISP-DM com atividades de análise de redes.
-https://doi.org/10.3390/make7030101
 
 ## Estrutura do repositório
 | Pasta | Conteúdo |
@@ -35,7 +28,6 @@ https://doi.org/10.3390/make7030101
 | `dados/` | Dataset bruto (não alterado) e processado |
 | `notebooks/` | Exploração e análises, numeradas na ordem de execução |
 | `src/` | Núcleo do protótipo: carregamento, cascatas, métricas, robustez, visualização |
-| `testes/` | Testes das métricas em cascatas com resultado conhecido |
 | `resultados/` | Figuras e tabelas geradas |
 | `docs/` | Relatório, slides e diagramas |        
 
@@ -49,16 +41,15 @@ pip install -r requirements.txt
 ```
 
 1. Coloque os arquivos do Twitter15/16 em `dados/brutos/`.
-2. Execute os notebooks na ordem numérica (`01`, `02`, `03`).
-3. Para testar as métricas: `pytest testes/`
+2. Execute os notebooks na ordem numérica.
 
 ## Equipe
 | Integrante | Papel |
 |---|---|
-| Felipe Augusto | Desenvolvedor |
+| Felipe Augusto | Coordenador |
 | Gustavo Raponi | Desenvolvedor |
 | Thayane | _a definir_ |
 | Giovana | _a definir_ |
-| _a definir_ | _a definir_ |
+| Isabela | _a definir_ |
 
 Projeto desenvolvido apenas para fins acadêmicos
