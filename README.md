@@ -32,11 +32,11 @@ Fonte: Ma, Gao & Wong (2017). https://doi.org/10.18653/v1/P17-1066
 | `docs/` | Relatório, slides e diagramas |        
 
 ## Como rodar
-Requisitos: Python 3.11.
+Requisitos: Python 3.13.
 
 ```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate | Linux/Mac: source .venv/bin/activate
+py -3.13 -m venv .venv          # Linux/Mac: python3.13 -m venv .venv
+# Windows (Git Bash): source .venv/Scripts/activate | Linux/Mac: source .venv/bin/activate
 pip install -r requirements.txt
 ```
 

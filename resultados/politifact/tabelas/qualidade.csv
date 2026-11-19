@@ -1,0 +1,9 @@
+verificacao,valor
+cascatas,314.0
+cascatas que são árvores válidas,314.0
+vértices sem horário (fora a raiz),0.0
+arestas entre usuários,18433.0
+arestas com filho antes do pai,0.0
+vértices com usuário repetido na cascata,5305.0
+% vértices com usuário repetido,13.0
+cascatas com menos de 10 vértices,28.0

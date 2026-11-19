@@ -1,0 +1,13 @@
+verificacao,valor
+cascatas,2139.0
+cascatas que são árvores válidas,2139.0
+vértices sem horário (fora a raiz),0.0
+arestas entre usuários,225136.0
+arestas com filho antes do pai,0.0
+vértices com usuário repetido na cascata,0.0
+% vértices com usuário repetido,0.0
+cascatas com menos de 10 vértices,0.0
+descartado no carregamento: segundo_pai_ou_ciclo,35129.0
+descartado no carregamento: pai_inexistente,0.0
+descartado no carregamento: laco,1958.0
+descartado no carregamento: fonte_repetida_entre_datasets,169.0
