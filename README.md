@@ -56,7 +56,7 @@ pip install -r requirements.txt
 | Integrante | Papel |
 |---|---|
 | Felipe Augusto | Desenvolvedor |
-| Gustavo Raponi | _a definir_ |
+| Gustavo Raponi | Desenvolvedor |
 | Thayane | _a definir_ |
 | Giovana | _a definir_ |
 | _a definir_ | _a definir_ |
