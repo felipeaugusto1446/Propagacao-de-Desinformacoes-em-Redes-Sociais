@@ -76,7 +76,6 @@ Sempre a partir da raiz do repositório:
 | `02_metricas` | Métricas e comparação estatística no Politifact |
 | `03_comparacao_robustez` | Remoção de contas no Politifact |
 | `experimento_twitter15` | Experimento complementar no Twitter15, com ramificação média e conta central pelo maior galho |
-| `analise_sir` | Modelo SIR de epidemias aplicado como teoria de difusão (não usa os datasets) |
 | `exemplo_cascatas_x_y.py` | Exemplo didático das cascatas estrela e cadeia |
 
 | Módulo (`src/`) | Função |
@@ -102,8 +101,8 @@ boatos falsos e verdadeiros e remoção de contas centrais mais eficaz que a ale
 |---|---|
 | Felipe Augusto | Coordenador |
 | Gustavo Raponi | Desenvolvedor |
-| Thayane | _a definir_ |
-| Giovana | _a definir_ |
-| Isabela | _a definir_ |
+| Thayane | Desenvolvedora |
+| Giovana | Modelagem |
+| Isabela | Modelagem |
 
 Projeto desenvolvido apenas para fins acadêmicos.
