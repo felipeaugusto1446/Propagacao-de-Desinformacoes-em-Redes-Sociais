@@ -1,0 +1,5 @@
+rotulo,estrategia,mean,count
+fake,aleatoria,0.693,143
+fake,centrais,0.438,143
+real,aleatoria,0.636,32
+real,centrais,0.294,32
