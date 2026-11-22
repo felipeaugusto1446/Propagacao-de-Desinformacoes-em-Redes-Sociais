@@ -1,11 +1,11 @@
 # Propagação de Desinformação em Redes Sociais
 
-Projeto da disciplina **SMAC03 – Grafos** (UNIFEI, 2º semestre de 2026),
+Projeto da disciplina **SMAC03 - Grafos** (UNIFEI, 2º semestre de 2026),
 Cenário 2. Prof. Rafael Frinhani.
 
 ## Objetivo
 Investigar como a estrutura das cascatas de compartilhamento difere entre
-boatos falsos e verdadeiros no Twitter, e o que essa estrutura revela sobre
+notícias falsas e verdadeiras no Twitter, e o que essa estrutura revela sobre
 onde intervenções de moderação teriam maior efeito.
 
 ## Metodologia
@@ -13,35 +13,46 @@ O projeto segue a **CRISP-NET** (Acuña-Cid et al., 2025), que integra as
 fases da CRISP-DM com atividades de análise de redes.
 https://doi.org/10.3390/make7030101
 
+O fluxo da solução está em `docs/diagramas/fluxo_solucao.png`.
+
 ## Modelagem
-Cada cascata é uma **árvore direcionada com raiz**:
-- **Raiz:** o usuário que publicou o tweet original
-- **Vértice:** os usuários que participaram da cascata
+Cada notícia é uma **árvore direcionada com raiz**:
+- **Raiz:** a notícia (tweet original)
+- **Vértice:** um compartilhamento (retweet), com o usuário e o horário como atributos
 - **Aresta:** de quem passou o conteúdo para quem compartilhou
+- **Atributo da árvore:** rótulo, falsa ou verdadeira
 
 Métricas analisadas: tamanho, profundidade, largura máxima, viralidade
-estrutural, velocidade e centralidade das contas, além da simulação de
-remoção das contas centrais (robustez).
+estrutural, fração de compartilhamentos vindos direto da fonte, maior
+amplificador e velocidade, além da simulação de remoção das contas centrais
+(robustez).
 
-## Dataset
-**UPFD Politifact** — o FakeNewsNet (Shu et al., 2020) já organizado em 314 árvores de propagação de retweets (157 fake, 157 real), com o horário de cada retweet. Os pais de cada retweet foram reconstruídos pelos autores a partir do horário e das relações de seguidores.
+## Datasets
+**UPFD Politifact** (análise principal): o FakeNewsNet (Shu et al., 2020) já
+organizado em 314 árvores de propagação de retweets (157 falsas e 157
+verdadeiras), com o horário de cada retweet. Os pais de cada retweet foram
+reconstruídos pelos autores a partir do horário e das relações de seguidores.
+A notícia `politifact14940` é excluída por aparecer nas listas fake e real do
+FakeNewsNet.
 
-Fonte: Dou et al. (2021), *User Preference-aware Fake News Detection*, SIGIR '21.
-https://arxiv.org/abs/2104.12259 · https://github.com/safe-graph/GNN-FakeNews
+Fonte: Dou et al. (2021), *User Preference-aware Fake News Detection*, SIGIR 2021.
+https://arxiv.org/abs/2104.12259 e https://github.com/safe-graph/GNN-FakeNews
 
-**Twitter15/16** — árvores de propagação de tweets rotulados (`false`, `true`, `unverified`, `non-rumor`).
+**Twitter15/16** (análise complementar): árvores de propagação de boatos
+rotulados (`false`, `true`, `unverified`, `non-rumor`). Na comparação usamos
+`false` (boato desmentido) e `true` (boato confirmado).
 
-Fonte: Ma, Gao & Wong (2017). https://doi.org/10.18653/v1/P17-1066
+Fonte: Ma, Gao e Wong (2017). https://doi.org/10.18653/v1/P17-1066
 
 ## Estrutura do repositório
 | Pasta | Conteúdo |
 |---|---|
-| `dados/` | Dataset bruto (não alterado) e processado |
-| `notebooks/` | Exploração e análises, numeradas na ordem de execução |
-| `src/` | Núcleo do protótipo: carregamento, cascatas, métricas, robustez, visualização |
-| `testes/` | Testes das métricas em cascatas com resultado conhecido |
+| `dados/` | Datasets brutos (não alterados) |
+| `src/` | Núcleo do protótipo: carregamento, cascatas, métricas, estatística, robustez, visualização |
+| `notebooks/` | Exploração e análises interativas |
+| `testes/` | Testes das métricas e do carregamento com resultados conhecidos |
 | `resultados/` | Figuras e tabelas geradas |
-| `docs/` | Relatório, slides e diagramas |        
+| `docs/` | Relatório, slides e diagramas |
 
 ## Como rodar
 Requisitos: Python 3.13.
@@ -55,22 +66,36 @@ pip install -r requirements.txt
 Sempre a partir da raiz do repositório:
 
 1. Análise completa (tabelas e figuras em `resultados/<dataset>/`):
-
-   `python executar_analise.py --dataset politifact` (padrão), mas pode-se utilizar também `--dataset twitter` ou `--dataset todos`
+   `python executar_analise.py --dataset politifact` (padrão), `--dataset twitter` ou `--dataset todos`
 2. Testes: `pytest testes/`
-3. Exploração interativa: notebooks `01_exploracao`, `02_metricas`,
-   `03_comparacao_robustez`
+3. Notebooks (VS Code, kernel do `.venv`):
+
+| Notebook | Conteúdo |
+|---|---|
+| `01_exploracao` | Qualidade dos dados do Politifact |
+| `02_metricas` | Métricas e comparação estatística no Politifact |
+| `03_comparacao_robustez` | Remoção de contas no Politifact |
+| `experimento_twitter15` | Experimento complementar no Twitter15, com ramificação média e conta central pelo maior galho |
+| `analise_sir` | Modelo SIR de epidemias aplicado como teoria de difusão (não usa os datasets) |
+| `exemplo_cascatas_x_y.py` | Exemplo didático das cascatas estrela e cadeia |
 
 | Módulo (`src/`) | Função |
 |---|---|
-| `carregamento.py` | Lê os 6 arquivos brutos em tabelas de vértices, arestas e árvores |
-| `cascata.py` | Monta uma árvore (`networkx.DiGraph`) por notícia |
-| `carregamento_twitter.py` | Lê o Twitter15/16 no mesmo formato de cascata (1º pai válido; descartes contados) |
-| `metricas.py` | Tamanho, profundidade, largura máxima, viralidade estrutural, fração direto da raiz, maior amplificador, tempo até metade, fração nas 1ªs 24 h |
-| `estatistica.py` | Mann-Whitney fake × real, ajuste de Holm, tamanho de efeito |
-| `robustez.py` | Remoção de contas centrais × aleatória e alcance restante |
+| `carregamento.py` | Lê os 6 arquivos brutos do UPFD em tabelas de vértices, arestas e árvores |
+| `cascata.py` | Monta uma árvore (`networkx.DiGraph`) por notícia do UPFD |
+| `carregamento_twitter.py` | Lê o Twitter15/16 no mesmo formato de cascata (primeiro pai válido, descartes contados) |
+| `metricas.py` | Tamanho, profundidade, largura máxima, viralidade estrutural, fração direto da raiz, maior amplificador, tempo até metade, fração nas primeiras 24 h |
+| `estatistica.py` | Teste de Mann-Whitney entre fake e real, ajuste de Holm, tamanho de efeito |
+| `robustez.py` | Remoção de contas centrais e aleatórias e alcance restante |
 | `visualizacao.py` | Desenho das cascatas, boxplots e curvas de robustez |
+| `experimento_twitter15.py` | Funções do notebook `experimento_twitter15` |
 
+**Sobre as duas análises do Twitter15:** o fluxo principal (`carregamento_twitter.py`)
+usa o par usuário e tweet como vértice, junta o Twitter15 e o Twitter16 e escolhe
+as contas centrais pelo grau de saída. O experimento (`experimento_twitter15.py`)
+usa só o usuário como vértice, apenas o Twitter15 e escolhe as contas centrais
+pelo maior galho. As duas chegam às mesmas conclusões: estruturas parecidas entre
+boatos falsos e verdadeiros e remoção de contas centrais mais eficaz que a aleatória.
 
 ## Equipe
 | Integrante | Papel |
@@ -81,4 +106,4 @@ Sempre a partir da raiz do repositório:
 | Giovana | _a definir_ |
 | Isabela | _a definir_ |
 
-Projeto desenvolvido apenas para fins acadêmicos
+Projeto desenvolvido apenas para fins acadêmicos.
