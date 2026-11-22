@@ -67,8 +67,13 @@ Sempre a partir da raiz do repositório:
 
 1. Análise completa (tabelas e figuras em `resultados/<dataset>/`):
    `python executar_analise.py --dataset politifact` (padrão), `--dataset twitter` ou `--dataset todos`
-2. Testes: `pytest testes/`
-3. Notebooks (VS Code, kernel do `.venv`):
+2. Análise de sensibilidade por época (Politifact, só cascatas iniciadas em 2016 a 2018):
+   `python analise_periodo_comum.py` (tabelas em `resultados/politifact/periodo_comum/`;
+   outro recorte com `--ano-min 2017 --ano-max 2018`)
+3. Figuras do artigo (depois do passo 1 com `--dataset todos`):
+   `python analises_complementares.py` (figuras em `resultados/complementar/`)
+4. Testes: `pytest testes/`
+5. Notebooks (VS Code, kernel do `.venv`):
 
 | Notebook | Conteúdo |
 |---|---|
@@ -95,6 +100,12 @@ as contas centrais pelo grau de saída. O experimento (`experimento_twitter15.py
 usa só o usuário como vértice, apenas o Twitter15 e escolhe as contas centrais
 pelo maior galho. As duas chegam às mesmas conclusões: estruturas parecidas entre
 boatos falsos e verdadeiros e remoção de contas centrais mais eficaz que a aleatória.
+
+**Sobre a análise por época:** no Politifact, a maior parte das notícias falsas
+começa em 2017 e 2018 e a maior parte das verdadeiras antes de 2015, e a coleta
+termina em dezembro de 2018. Por isso `analise_periodo_comum.py` repete a comparação
+e a remoção de contas só com as cascatas iniciadas em 2016 a 2018, para separar o
+efeito do rótulo do efeito da época e do tempo de observação.
 
 ## Equipe
 | Integrante | Papel |
