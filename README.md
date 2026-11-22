@@ -77,8 +77,8 @@ Sempre a partir da raiz do repositório:
 |---|---|
 | Felipe Augusto | Coordenador |
 | Gustavo Raponi | Desenvolvedor |
-| Thayane | _a definir_ |
-| Giovana | _a definir_ |
-| Isabela | _a definir_ |
+| Thayane | Desenvolvedor |
+| Giovana | Modelador |
+| Isabela | Modelador |
 
 Projeto desenvolvido apenas para fins acadêmicos
